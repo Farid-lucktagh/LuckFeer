@@ -1,4 +1,4 @@
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 import AppLayout from '@/layouts/app-layout';
 import productsRoutes from '@/routes/products';
 import type { BreadcrumbItem } from '@/types';
@@ -32,6 +32,15 @@ interface Product {
 }
 
 export default function Index({ products }: { products: Product[] }) {
+
+    const { processing, delete: destroy } = useForm();
+
+    const handleDelete = (id: number) => {
+        if (window.confirm('Are you sure you want to delete this product?')) {
+        destroy(productsRoutes.destroy(id).url);
+        }
+    }
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Products | list" />
@@ -72,7 +81,9 @@ export default function Index({ products }: { products: Product[] }) {
                                                 Edit
                                             </Button>
                                         </Link>
-                                        <Button className="bg-red-500 text-white">
+                                        <Button disabled={processing}
+                                                className="bg-red-500 text-white" 
+                                                onClick={() => handleDelete(product.id)}>
                                             Delete
                                         </Button>
                                     </TableCell>
