@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
 
             // Datos del usuario
-            $table->string('nombre');
-            $table->string('correo')->unique();
+            $table->string('name');
+            $table->string('email')->unique();
 
             // Autenticación Laravel
             $table->timestamp('email_verified_at')->nullable();

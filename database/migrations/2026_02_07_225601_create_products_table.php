@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->decimal('costo', 10, 2);
             $table->integer('cantidad_stock')->default(0);
             $table->integer('stock_minimo')->default(10);
-            $table->enum('estado', ['activo', 'inactivo'])->default('activo');
+            $table->enum('estado', ['disponible', 'bajo', 'sin'])->default('disponible');
             $table->timestamps();
 
             $table->index('nombre');

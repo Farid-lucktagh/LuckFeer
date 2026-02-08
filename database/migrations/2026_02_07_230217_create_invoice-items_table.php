@@ -10,9 +10,8 @@ return new class extends Migration {
         Schema::create('invoice-items', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('factura_id')
-                  ->constrained('facturas')
-                  ->cascadeOnDelete();
+            $table->foreignId('factura_id');
+            $table->foreign('factura_id')->references('id')->on('invoices')->cascadeOnDelete();
 
             $table->foreignId('producto_id')
                   ->constrained('products')
