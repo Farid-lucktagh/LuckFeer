@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Package, Tags, Users } from 'lucide-react';
+import { BookOpen, Cog, Folder, LayoutGrid, Package, Tags, User, UserCog, Users } from 'lucide-react';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -18,7 +18,7 @@ import AppLogo from './app-logo';
 import products from '@/routes/products';
 import categories from '@/routes/categories';
 import customers from '@/routes/customers';
-
+import users from '@/routes/users';
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
@@ -40,6 +40,11 @@ const mainNavItems: NavItem[] = [
         href: customers.index(),
         icon: Users,
     },
+    {
+        title: 'Users',
+        href: users.index(),
+        icon: UserCog,
+    }
 ];
 
 const footerNavItems: NavItem[] = [

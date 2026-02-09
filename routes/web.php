@@ -6,6 +6,7 @@ use Laravel\Fortify\Features;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return Inertia::render('welcome', [
@@ -40,6 +41,14 @@ Route::post('customers', [CustomerController::class, 'store'])->name('customers.
 Route::get('customers/{customer}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
 Route::put('customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
 Route::delete('customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+
+//user routes
+Route::get('users', [UserController::class, 'index'])->name('users.index');
+Route::get('users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('users', [UserController::class, 'store'])->name('users.store');
+Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
+Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
 require __DIR__.'/settings.php';
