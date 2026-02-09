@@ -11,7 +11,7 @@ class StorecustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class StorecustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => 'required|string|max:255',
+            'tipo_documento' => 'required|in:cedula,tarjeta_identidad,pasaporte',
+            'numero_documento' => 'required|string|max:50|unique:customers,numero_documento',
+            'telefono' => 'nullable|string|max:20',
+            'correo' => 'nullable|email|unique:customers,correo',
+            'direccion' => 'nullable|string',
+            'total_compras' => 'nullable|numeric|min:0',
+            'estado' => 'required|in:activo,inactivo',
         ];
     }
 }

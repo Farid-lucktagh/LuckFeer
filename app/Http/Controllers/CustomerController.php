@@ -23,7 +23,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia('customers/create', [
+            'customer' => new customer(),
+        ]);
     }
 
     /**
@@ -31,7 +33,9 @@ class CustomerController extends Controller
      */
     public function store(StorecustomerRequest $request)
     {
-        //
+        $validated = $request->validated();
+        customer::create($validated);
+        return redirect()->route('customers.index');
     }
 
     /**
