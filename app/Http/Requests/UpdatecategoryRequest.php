@@ -11,7 +11,7 @@ class UpdatecategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdatecategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string|max:255',
+            'color' => 'required|string|max:7', 
+            'estado' => 'required|in:activo,inactivo',
         ];
     }
 }

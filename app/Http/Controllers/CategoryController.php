@@ -51,7 +51,9 @@ class CategoryController extends Controller
      */
     public function edit(category $category)
     {
-        //
+        return Inertia('categories/edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -59,7 +61,9 @@ class CategoryController extends Controller
      */
     public function update(UpdatecategoryRequest $request, category $category)
     {
-        //
+        $valued = $request->validated();
+        $category->update($valued);
+        return redirect()->route('categories.index');
     }
 
     /**
