@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->string('telefono', 20)->nullable();
             $table->string('correo')->nullable();
             $table->text('direccion')->nullable();
-            $table->enum('tipo_cliente', ['regular', 'vip'])->default('regular');
             $table->decimal('total_compras', 10, 2)->default(0);
             $table->enum('estado', ['activo', 'inactivo'])->default('activo');
             $table->timestamps();

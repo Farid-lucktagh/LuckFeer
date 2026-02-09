@@ -18,7 +18,6 @@ class Customer extends Model
         'telefono',
         'correo',
         'direccion',
-        'tipo_cliente',
         'total_compras',
         'estado',
     ];
