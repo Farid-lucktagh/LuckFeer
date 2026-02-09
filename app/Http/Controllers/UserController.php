@@ -52,7 +52,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return Inertia('users/edit', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -60,7 +62,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $valued = $request->validated();
+        $user->update($valued);
+        return redirect()->route('users.index');
     }
 
     /**
