@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SaleController;
 
 Route::get('/', function () {
     return Inertia::render('welcome', [
@@ -50,5 +51,12 @@ Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.ed
 Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
 Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
+//sales routes
+Route::get('sales', [SaleController::class, 'index'])->name('sales.index');
+Route::get('sales/create', [SaleController::class, 'create'])->name('sales.create');
+Route::post('sales', [SaleController::class, 'store'])->name('sales.store');
+Route::get('sales/{sale}/edit', [SaleController::class, 'edit'])->name('sales.edit');
+Route::put('sales/{sale}', [SaleController::class, 'update'])->name('sales.update');
+Route::delete('sales/{sale}', [SaleController::class, 'destroy'])->name('sales.destroy');
 
 require __DIR__.'/settings.php';
