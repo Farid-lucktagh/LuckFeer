@@ -22,10 +22,16 @@ class StoresaleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cliente_id' => ['required', 'integer', 'exists:clientes,id'],
-            'product_id' => ['required', 'integer', 'exists:products,id'],
-            'quantity' => ['required', 'integer', 'min:1'],
-            'total_price' => ['required', 'numeric', 'min:0'],
+            'cliente_id' => ['required', 'integer', 'exists:customers,id'],
+            'metodo_pago' => ['required', 'string', 'in:efectivo,tarjeta,transferencia'],
+            'subtotal' => ['required', 'numeric', 'min:0'],
+            'impuesto' => ['required', 'numeric', 'min:0'],
+            'total' => ['required', 'numeric', 'min:0'],
+            'items' => ['required', 'array', 'min:1'],
+            'items.*.producto_id' => ['required', 'integer', 'exists:products,id'],
+            'items.*.cantidad' => ['required', 'integer', 'min:1'],
+            'items.*.precio_unitario' => ['required', 'numeric', 'min:0'],
+            'items.*.precio_total' => ['required', 'numeric', 'min:0'],
         ];
     }
 }

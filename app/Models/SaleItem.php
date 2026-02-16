@@ -9,7 +9,7 @@ class SaleItem extends Model
 {
     use HasFactory;
 
-    protected $table = 'sale_items';
+    protected $table = 'sale-items';
 
     public $timestamps = false;
 

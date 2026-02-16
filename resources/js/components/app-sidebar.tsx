@@ -13,18 +13,18 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
-import type { NavItem } from '@/types';
-import AppLogo from './app-logo';
-import products from '@/routes/products';
 import categories from '@/routes/categories';
 import customers from '@/routes/customers';
-import users from '@/routes/users';
+import products from '@/routes/products';
 import sales from '@/routes/sales';
+import users from '@/routes/users';
+import type { NavItem } from '@/types';
+import AppLogo from './app-logo';
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
         href: dashboard(),
-        icon: LayoutGrid,
+        icon: LayoutGrid,   
     },
     {
         title: 'Products',
@@ -56,7 +56,7 @@ const mainNavItems: NavItem[] = [
 const footerNavItems: NavItem[] = [
     {
         title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
+        href: 'https://github.com/Farid-lucktagh/LuckFeer',
         icon: Folder,
     },
     {

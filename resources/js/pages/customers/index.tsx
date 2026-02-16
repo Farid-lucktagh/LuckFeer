@@ -1,7 +1,5 @@
 import { Head, Link, useForm } from '@inertiajs/react';
-import AppLayout from '@/layouts/app-layout';
-import customersRoutes from '@/routes/customers';
-import type { BreadcrumbItem } from '@/types';
+import { Button } from '@/components/ui/button';
 import {
     Table,
     TableBody,
@@ -11,7 +9,9 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Button } from '@/components/ui/button';
+import AppLayout from '@/layouts/app-layout';
+import customersRoutes from '@/routes/customers';
+import type { BreadcrumbItem } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [
 
