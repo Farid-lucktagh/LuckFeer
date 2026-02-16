@@ -15,7 +15,7 @@ class Factura extends Model
 
     protected $fillable = [
         'codigo',
-        'cliente_id',
+        'documento',
         'usuario_id',
         'subtotal',
         'porcentaje_iva',
@@ -42,10 +42,6 @@ class Factura extends Model
      * =====================
      */
 
-    public function cliente()
-    {
-        return $this->belongsTo(Customer::class, 'cliente_id');
-    }
 
     public function usuario()
     {
