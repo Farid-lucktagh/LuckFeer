@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, Cog, Folder, LayoutGrid, Package, ShoppingCart, Tags, User, UserCog, Users } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, Package, ShoppingCart, Tags, UserCog, Users } from 'lucide-react';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';

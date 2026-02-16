@@ -1,4 +1,5 @@
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, 
+    useForm } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import {
     Table,
