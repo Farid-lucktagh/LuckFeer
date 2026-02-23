@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\InvoiceController;
 
 Route::get('/', function () {
     return Inertia::render('welcome', [
@@ -58,5 +59,11 @@ Route::post('sales', [SaleController::class, 'store'])->name('sales.store');
 Route::get('sales/{sale}/edit', [SaleController::class, 'edit'])->name('sales.edit');
 Route::put('sales/{sale}', [SaleController::class, 'update'])->name('sales.update');
 Route::delete('sales/{sale}', [SaleController::class, 'destroy'])->name('sales.destroy');
+
+//invoice routes
+Route::get('invoices', [InvoiceController::class, 'index'])->name('invoices.index');
+Route::get('invoices/create', [InvoiceController::class, 'create'])->name('invoices.create');
+Route::post('invoices', [InvoiceController::class, 'store'])->name('invoices.store');
+Route::delete('invoices/{invoice}', [InvoiceController::class, 'destroy'])->name('invoices.destroy');
 
 require __DIR__.'/settings.php';

@@ -11,9 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->string('codigo', 50);
 
-            $table->foreignId('cliente_id')
-                  ->constrained('customers')
-                  ->restrictOnDelete();
+            $table->integer('documento');
 
             $table->foreignId('usuario_id')
                   ->constrained('users')

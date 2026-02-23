@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Factura extends Model
+class Invoice extends Model
 {
     use HasFactory;
 
-    protected $table = 'facturas';
+    protected $table = 'invoices';
 
     public $timestamps = false;
 
@@ -30,6 +30,7 @@ class Factura extends Model
 
     protected $casts = [
         'subtotal' => 'decimal:2',
+        'porcentaje_iva' => 'decimal:2',
         'monto_iva' => 'decimal:2',
         'descuento' => 'decimal:2',
         'total' => 'decimal:2',
@@ -42,7 +43,6 @@ class Factura extends Model
      * =====================
      */
 
-
     public function usuario()
     {
         return $this->belongsTo(User::class, 'usuario_id');
@@ -50,6 +50,14 @@ class Factura extends Model
 
     public function items()
     {
-        return $this->hasMany(ItemFactura::class, 'factura_id');
+        return $this->hasMany(InvoiceItem::class, 'factura_id');
+    }
+
+    /**
+     * Busca el cliente asociado por numero_documento.
+     */
+    public function cliente()
+    {
+        return $this->belongsTo(Customer::class, 'documento', 'numero_documento');
     }
 }

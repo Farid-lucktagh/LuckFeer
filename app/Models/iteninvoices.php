@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ItemFactura extends Model
+class InvoiceItem extends Model
 {
     use HasFactory;
 
-    protected $table = 'items_factura';
+    protected $table = 'invoice-items';
 
     public $timestamps = false;
 
@@ -34,9 +34,9 @@ class ItemFactura extends Model
      * =====================
      */
 
-    public function factura()
+    public function invoice()
     {
-        return $this->belongsTo(Factura::class, 'factura_id');
+        return $this->belongsTo(Invoice::class, 'factura_id');
     }
 
     public function producto()
