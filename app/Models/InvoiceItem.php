@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ItemFactura extends Model
+class InvoiceItem extends Model
 {
     use HasFactory;
 
-    protected $table = 'items_factura';
+    protected $table = 'invoice-items';
 
-    public $timestamps = false;
+    public $timestamps = true;
+
+    const CREATED_AT = 'creado_en';
+    const UPDATED_AT = null;
 
     protected $fillable = [
         'factura_id',
@@ -36,7 +39,7 @@ class ItemFactura extends Model
 
     public function factura()
     {
-        return $this->belongsTo(Factura::class, 'factura_id');
+        return $this->belongsTo(Invoice::class, 'factura_id');
     }
 
     public function producto()
