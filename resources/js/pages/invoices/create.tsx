@@ -1,6 +1,6 @@
 import { Head, useForm } from '@inertiajs/react';
 import { Trash2, Plus } from 'lucide-react';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -57,6 +57,7 @@ interface InvoiceItem {
     stock_disponible: number;
 }
 
+
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Invoices',
@@ -76,7 +77,7 @@ export default function Create({ customers, products }: Props) {
     const [descuento, setDescuento] = useState<number>(0);
 
     const { data, setData, post, processing, errors, transform } = useForm<{
-        documento: number | string;
+        cliente_id: number | null;
         metodo_pago: string;
         porcentaje_iva: number;
         descuento: number;
@@ -86,7 +87,7 @@ export default function Create({ customers, products }: Props) {
         monto_iva: number;
         total: number;
     }>({
-        documento: '',
+        cliente_id: null,
         metodo_pago: 'efectivo',
         porcentaje_iva: 16,
         descuento: 0,
@@ -110,11 +111,8 @@ export default function Create({ customers, products }: Props) {
     }, [selectedItems, porcentajeIva, descuento]);
 
     const handleSelectCustomer = (customerId: string) => {
-        setSelectedCustomerId(customerId);
-        const customer = customers.find(c => c.id === Number(customerId));
-        if (customer) {
-            setData('documento', Number(customer.numero_documento));
-        }
+    setSelectedCustomerId(customerId);
+    setData('cliente_id', Number(customerId));
     };
 
     const handleAddProduct = () => {
@@ -149,6 +147,13 @@ export default function Create({ customers, products }: Props) {
                 subtotal: Number(product.precio),
                 stock_disponible: product.cantidad_stock,
             }]);
+            useEffect(() => {
+    const defaultCustomer = customers.find(c => c.id === 3);
+    if (defaultCustomer) {
+        setSelectedCustomerId(defaultCustomer.id.toString());
+        setData('cliente_id', defaultCustomer.id);
+    }
+}, [customers]);
         }
         setCurrentProductId("");
     };
@@ -226,7 +231,7 @@ export default function Create({ customers, products }: Props) {
                                             ))}
                                         </SelectContent>
                                     </Select>
-                                    {errors.documento && <p className="text-red-500 text-xs">{errors.documento}</p>}
+                                    {errors.cliente_id && <p className="text-red-500 text-xs">{errors.cliente_id}</p>}
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="metodo_pago">Metodo de Pago</Label>

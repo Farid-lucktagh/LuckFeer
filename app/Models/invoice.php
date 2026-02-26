@@ -29,19 +29,12 @@ class Invoice extends Model
     ];
 
     protected $casts = [
-        'subtotal' => 'decimal:2',
-        'monto_iva' => 'decimal:2',
-        'descuento' => 'decimal:2',
-        'total' => 'decimal:2',
+        'subtotal'      => 'decimal:2',
+        'monto_iva'     => 'decimal:2',
+        'descuento'     => 'decimal:2',
+        'total'         => 'decimal:2',
         'fecha_emision' => 'datetime',
     ];
-
-    /**
-     * =====================
-     * Relaciones
-     * =====================
-     */
-
 
     public function cliente()
     {

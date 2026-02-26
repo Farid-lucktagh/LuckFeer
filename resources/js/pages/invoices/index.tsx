@@ -19,6 +19,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 interface Cliente {
+    id: number;
     nombre: string;
     numero_documento: string;
 }
@@ -26,7 +27,6 @@ interface Cliente {
 interface Invoice {
     id: number;
     codigo: string;
-    documento: number;
     subtotal: number;
     porcentaje_iva: number;
     monto_iva: number;
@@ -56,7 +56,9 @@ export default function Index({ invoices }: { invoices: Invoice[] }) {
             pendiente:  { label: 'Pendiente',  className: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300' },
             anulada:    { label: 'Anulada',    className: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' },
         };
+
         const info = map[estado] ?? { label: estado, className: 'bg-gray-100 text-gray-800' };
+
         return (
             <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${info.className}`}>
                 {info.label}
@@ -67,17 +69,21 @@ export default function Index({ invoices }: { invoices: Invoice[] }) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Invoices" />
+
             <div className="m-4">
+
                 {success && (
                     <div className="mb-4 rounded-md border border-green-300 bg-green-50 px-4 py-3 text-sm text-green-800 dark:border-green-700 dark:bg-green-900/30 dark:text-green-200">
                         {success}
                     </div>
                 )}
+
                 <Link href="/invoices/create">
                     <Button className="mb-4">
                         Crear Factura
                     </Button>
                 </Link>
+
                 {invoices.length > 0 ? (
                     <Table>
                         <TableHeader>
@@ -95,19 +101,50 @@ export default function Index({ invoices }: { invoices: Invoice[] }) {
                                 <TableHead className="text-right">Acciones</TableHead>
                             </TableRow>
                         </TableHeader>
+
                         <TableBody>
                             {invoices.map((invoice) => (
                                 <TableRow key={invoice.id}>
-                                    <TableCell className="font-medium">{invoice.codigo}</TableCell>
-                                    <TableCell>{invoice.cliente?.nombre ?? '-'}</TableCell>
-                                    <TableCell>{invoice.documento}</TableCell>
-                                    <TableCell className="text-right">${Number(invoice.subtotal).toFixed(2)}</TableCell>
-                                    <TableCell className="text-right">${Number(invoice.monto_iva).toFixed(2)}</TableCell>
-                                    <TableCell className="text-right">${Number(invoice.descuento).toFixed(2)}</TableCell>
-                                    <TableCell className="text-right font-semibold">${Number(invoice.total).toFixed(2)}</TableCell>
-                                    <TableCell className="capitalize">{invoice.metodo_pago}</TableCell>
-                                    <TableCell>{estadoLabel(invoice.estado)}</TableCell>
-                                    <TableCell>{new Date(invoice.fecha_emision).toLocaleDateString()}</TableCell>
+                                    <TableCell className="font-medium">
+                                        {invoice.codigo}
+                                    </TableCell>
+
+                                    <TableCell>
+                                        {invoice.cliente?.nombre ?? '-'}
+                                    </TableCell>
+
+                                    <TableCell>
+                                        {invoice.cliente?.numero_documento ?? '-'}
+                                    </TableCell>
+
+                                    <TableCell className="text-right">
+                                        ${Number(invoice.subtotal).toFixed(2)}
+                                    </TableCell>
+
+                                    <TableCell className="text-right">
+                                        ${Number(invoice.monto_iva).toFixed(2)}
+                                    </TableCell>
+
+                                    <TableCell className="text-right">
+                                        ${Number(invoice.descuento).toFixed(2)}
+                                    </TableCell>
+
+                                    <TableCell className="text-right font-semibold">
+                                        ${Number(invoice.total).toFixed(2)}
+                                    </TableCell>
+
+                                    <TableCell className="capitalize">
+                                        {invoice.metodo_pago}
+                                    </TableCell>
+
+                                    <TableCell>
+                                        {estadoLabel(invoice.estado)}
+                                    </TableCell>
+
+                                    <TableCell>
+                                        {new Date(invoice.fecha_emision).toLocaleDateString()}
+                                    </TableCell>
+
                                     <TableCell className="text-right">
                                         <Button
                                             disabled={processing}
@@ -123,7 +160,9 @@ export default function Index({ invoices }: { invoices: Invoice[] }) {
                         </TableBody>
                     </Table>
                 ) : (
-                    <p className="text-sm text-muted-foreground py-8 text-center">No hay facturas registradas.</p>
+                    <p className="text-sm text-muted-foreground py-8 text-center">
+                        No hay facturas registradas.
+                    </p>
                 )}
             </div>
         </AppLayout>
